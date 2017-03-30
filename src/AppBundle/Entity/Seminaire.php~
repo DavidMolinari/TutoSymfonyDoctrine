@@ -30,6 +30,10 @@ class Seminaire
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Employe", inversedBy="seminaires")
+     */
+    private $employes;
+    /**
      * Get id
      *
      * @return int
@@ -63,4 +67,3 @@ class Seminaire
         return $this->dateDebutSem;
     }
 }
-

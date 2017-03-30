@@ -54,7 +54,21 @@ class Employe
      */
     private $ville;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Projet")
+     */
 
+    private $projet;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Seminaire", mappedBy="employes")
+     * @ORM\JoinTable(name="Inscrit",
+     *      joinColumns={@ORM\JoinColumn(name="employe_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="seminaire_id", referencedColumnName="id")}
+     * )
+     */
+
+    private $seminaires;
     /**
      * Get id
      *
@@ -159,5 +173,70 @@ class Employe
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set projet
+     *
+     * @param \AppBundle\Entity\Projet $projet
+     *
+     * @return Employe
+     */
+    public function setProjet(\AppBundle\Entity\Projet $projet = null)
+    {
+        $this->projet = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Get projet
+     *
+     * @return \AppBundle\Entity\Projet
+     */
+    public function getProjet()
+    {
+        return $this->projet;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->seminaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add seminaire
+     *
+     * @param \AppBundle\Entity\Seminaire $seminaire
+     *
+     * @return Employe
+     */
+    public function addSeminaire(\AppBundle\Entity\Seminaire $seminaire)
+    {
+        $this->seminaires[] = $seminaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove seminaire
+     *
+     * @param \AppBundle\Entity\Seminaire $seminaire
+     */
+    public function removeSeminaire(\AppBundle\Entity\Seminaire $seminaire)
+    {
+        $this->seminaires->removeElement($seminaire);
+    }
+
+    /**
+     * Get seminaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeminaires()
+    {
+        return $this->seminaires;
     }
 }

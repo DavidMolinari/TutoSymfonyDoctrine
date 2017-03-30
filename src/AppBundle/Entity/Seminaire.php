@@ -30,6 +30,10 @@ class Seminaire
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Employe", inversedBy="seminaires")
+     */
+    private $employes;
+    /**
      * Get id
      *
      * @return int
@@ -61,5 +65,46 @@ class Seminaire
     public function getDateDebutSem()
     {
         return $this->dateDebutSem;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->employes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add employe
+     *
+     * @param \AppBundle\Entity\Employe $employe
+     *
+     * @return Seminaire
+     */
+    public function addEmploye(\AppBundle\Entity\Employe $employe)
+    {
+        $this->employes[] = $employe;
+
+        return $this;
+    }
+
+    /**
+     * Remove employe
+     *
+     * @param \AppBundle\Entity\Employe $employe
+     */
+    public function removeEmploye(\AppBundle\Entity\Employe $employe)
+    {
+        $this->employes->removeElement($employe);
+    }
+
+    /**
+     * Get employes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployes()
+    {
+        return $this->employes;
     }
 }
