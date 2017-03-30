@@ -43,6 +43,15 @@ class Employe
     private $salaire;
 
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
+
     /**
      * Get id
      *
@@ -123,5 +132,29 @@ class Employe
     public function getSalaire()
     {
         return $this->salaire;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Employe
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 }

@@ -43,6 +43,15 @@ class Employe
     private $salaire;
 
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
+
     /**
      * Get id
      *
