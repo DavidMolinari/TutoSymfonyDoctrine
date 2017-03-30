@@ -36,32 +36,6 @@ class AppliController extends Controller
      */
     public function creerCoursACtion(Request $request){
 
-        /*
-        $cours = new Cours();
-
-
-        $form = $this->createFormBuilder($cours)
-            ->add('libellecours', TextType::class, array('label' => 'Libéllé du cours :'))
-            ->add('nbjours', IntegerType::class, array('label' => 'Nb jours : :'))
-            ->add('save', SubmitType::class)
-            ->getForm();
-
-
-        $form->handleRequest($request);
-
-        $this->get('request');
-
-        if ($form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cours);
-            $em->flush();
-
-            return $this->render('AppBundle::App:ok.html.twig', array('message' => 'Cours Créé'));
-        }
-        return $this->render('AppBundle::App:cours.html.twig', array('leFormulaire' => $form->createView()));
-
-        */
-
         $cours = new Cours();
 
         $form = $this->createFormBuilder($cours)
@@ -73,22 +47,18 @@ class AppliController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $task = $form->getData();
+            //$task = $form->getData(); Transitivité made by Rémy
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
             $em = $this->getDoctrine()->getManager();
-            $em->persist($task);
+            $em->persist($cours);
             $em->flush();
 
             return $this->render('App/ok.html.twig', array('message' => 'Cours Créé'));
 
         }
-
         return $this->render('App/cours.html.twig', array('leFormulaire' => $form->createView()));
 
-
     }
+
+
 }
