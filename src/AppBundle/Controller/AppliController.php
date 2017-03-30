@@ -4,7 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\Cours;
+use AppBundle\Entity\Employe;
+use AppBundle\Entity\Seminaire;
 use AppBundle\Form\CoursType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,5 +63,26 @@ class AppliController extends Controller
 
     }
 
+    /**
+     * @Route ("/creerSeminaire", name"CreerSeminaire")
+     */
+    public function creerSeminaireAction(Request $request){
+        $seminaire = new Seminaire();
+
+        $form = $this->createFormBuilder($seminaire)
+            ->add('dateDebutSem', DateType::class, array('label' => 'Date du début du Séminaire : '))
+            ->add('users', Employe::class, array(
+                // query choices from this entity
+                'class' => 'AppBundle:Employe'));
+        //TODO Trouver comment ajouter un objet directement 
+
+                // use the User.username property as the visible option string
+
+
+
+
+
+
+    }
 
 }
