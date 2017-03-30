@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="employe")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeRepository")
+ * @ORM\Table(indexes={@ORM\Index(name="ind_nom", columns={"nom"})})
+ * @ORM\Table(indexes={@ORM\Index(name="ind_ville", columns={"ville"})})
+
  */
 class Employe
 {
