@@ -33,6 +33,13 @@ class Seminaire
      * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Employe", inversedBy="seminaires")
      */
     private $employes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Cours")
+     */
+    private $cours;
+
+
     /**
      * Get id
      *
